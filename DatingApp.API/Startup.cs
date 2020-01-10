@@ -20,12 +20,12 @@ namespace DatingApp.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration) 
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
+               
         }
-
-        public IConfiguration Configuration { get; }
+                        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,6 +34,7 @@ namespace DatingApp.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            var test = Configuration.GetSection("AppSettings:Token").Value;
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer( options =>
                 {
