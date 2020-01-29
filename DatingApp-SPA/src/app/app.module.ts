@@ -1,16 +1,10 @@
-import { PhotoEditorComponent } from './members/member-list/photo-editor/photo-editor.component';
-import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
-import { MemberEditResolver } from './_resolvers/member-edit.resolver';
-import { MemberListResolver } from './_resolvers/member-list.resolver';
-import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
-import { AuthGuard } from './_guards/auth.guard';
-import { AlertifyService } from './_services/alertify.service';
 import { MemberDetailComponent } from './members/member-list/member-detail/member-detail.component';
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
@@ -29,6 +23,13 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AuthService } from './_services/auth.service';
 import { MemberEditComponent } from './members/member-list/member-edit/member-edit.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { PhotoEditorComponent } from './members/member-list/photo-editor/photo-editor.component';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { AuthGuard } from './_guards/auth.guard';
+import { AlertifyService } from './_services/alertify.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -57,9 +58,12 @@ export class CustomHammerConfig extends HammerGestureConfig  {
    ],
    imports: [
       BrowserModule,
+      BrowserAnimationsModule,
       HttpClientModule,
       FormsModule,
+      ReactiveFormsModule,
       BsDropdownModule.forRoot(),
+      BsDatepickerModule.forRoot(),
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
